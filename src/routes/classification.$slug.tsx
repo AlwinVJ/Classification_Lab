@@ -1,6 +1,8 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { getLesson } from "@/lib/curriculum";
 import { LessonTemplate } from "@/components/learning/LessonTemplate";
+import { LessonShell } from "@/components/learning/LessonShell";
+import { classificationContent } from "@/content/classification";
 
 export const Route = createFileRoute("/classification/$slug")({
   loader: ({ params }) => {
@@ -25,5 +27,11 @@ export const Route = createFileRoute("/classification/$slug")({
 
 function Lesson() {
   const { slug } = Route.useParams();
-  return <LessonTemplate section="classification" slug={slug} />;
+  const Content = classificationContent[slug];
+  if (!Content) return <LessonTemplate section="classification" slug={slug} />;
+  return (
+    <LessonShell section="classification" slug={slug}>
+      <Content />
+    </LessonShell>
+  );
 }

@@ -10,4 +10,5 @@
 <!-- LOVABLE:END -->
 # Agents
 - Curriculum (sections/lessons) lives in src/lib/curriculum.ts; nav, sidebar and dynamic lesson routes derive from it — add lessons there.
+- Real lesson content lives in src/content/<section>.tsx as a slug→component map; the $slug route renders it inside LessonShell and falls back to LessonTemplate placeholders.
 - Site is stateless: no auth, tracking or progress storage; localStorage only for theme preference.
