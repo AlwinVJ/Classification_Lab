@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import { getLesson } from "@/lib/curriculum";
 import { DocsLayout } from "@/components/layout/DocsLayout";
 
+const lessonRoutes = { classification: "/classification/$slug", evaluation: "/evaluation/$slug", algorithms: "/algorithms/$slug" } as const;
+
 export const H2 = ({ children }: { children: string }) => (
   <h2 id={children.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className="mt-10 mb-3 scroll-mt-20 text-xl font-semibold tracking-tight">{children}</h2>
 );
@@ -12,7 +14,9 @@ export const Prose = ({ children }: { children: ReactNode }) => <div className="
 
 /** Wraps any lesson: title block, content, and stateless prev/next navigation. */
 export function LessonShell({ section, slug, children }: { section: string; slug: string; children: ReactNode }) {
-  const { lesson, prev, next } = getLesson(section, slug)!;
+  const found = getLesson(section, slug);
+  if (!found) return null;
+  const { lesson, prev, next } = found;
   return (
     <DocsLayout>
       <article className="max-w-3xl">
@@ -22,13 +26,13 @@ export function LessonShell({ section, slug, children }: { section: string; slug
         <div className="mt-8">{children}</div>
         <nav aria-label="Lesson navigation" className="mt-12 grid gap-3 border-t pt-6 sm:grid-cols-2">
           {prev ? (
-            <Link to={`/${prev.section.id}/${prev.slug}` as "/"} className="rounded-lg border p-4 hover:border-primary/50">
+            <Link to={lessonRoutes[prev.section.id]} params={{ slug: prev.slug }} className="rounded-lg border p-4 hover:border-primary/50">
               <span className="flex items-center gap-1 text-xs text-muted-foreground"><ArrowLeft className="h-3 w-3" /> Previous concept</span>
               <span className="font-medium">{prev.title}</span>
             </Link>
           ) : <span />}
           {next && (
-            <Link to={`/${next.section.id}/${next.slug}` as "/"} className="rounded-lg border p-4 text-right hover:border-primary/50">
+            <Link to={lessonRoutes[next.section.id]} params={{ slug: next.slug }} className="rounded-lg border p-4 text-right hover:border-primary/50">
               <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground">Next concept <ArrowRight className="h-3 w-3" /></span>
               <span className="font-medium">{next.title}</span>
             </Link>

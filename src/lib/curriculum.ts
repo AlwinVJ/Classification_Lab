@@ -31,6 +31,7 @@ export const sections: Section[] = [
       { slug: "f1-score", title: "F1 Score", summary: "A single number balancing precision and recall." },
       { slug: "roc-auc", title: "ROC-AUC", summary: "Performance across every possible threshold." },
       { slug: "precision-recall", title: "Precision-Recall", summary: "The trade-off curve for imbalanced problems." },
+      { slug: "choosing-metrics", title: "Choosing Metrics", summary: "Match metrics to error costs, class distribution and real-world decisions." },
     ],
   },
   {
@@ -54,5 +55,7 @@ export function getLesson(sectionId: string, slug: string) {
   const all = sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
   const i = all.findIndex((l) => l.section.id === sectionId && l.slug === slug);
   if (i < 0) return undefined;
-  return { lesson: all[i]!, prev: all[i - 1], next: all[i + 1] };
+  const lesson = all[i];
+  if (!lesson) return undefined;
+  return { lesson, prev: all[i - 1], next: all[i + 1] };
 }

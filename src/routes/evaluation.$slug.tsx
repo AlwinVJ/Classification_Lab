@@ -1,6 +1,8 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { getLesson } from "@/lib/curriculum";
 import { LessonTemplate } from "@/components/learning/LessonTemplate";
+import { LessonShell } from "@/components/learning/LessonShell";
+import { evaluationContent } from "@/content/evaluation";
 
 export const Route = createFileRoute("/evaluation/$slug")({
   loader: ({ params }) => {
@@ -17,6 +19,8 @@ export const Route = createFileRoute("/evaluation/$slug")({
         { name: "description", content: loaderData.summary },
         { property: "og:title", content: title },
         { property: "og:description", content: loaderData.summary },
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },
@@ -25,5 +29,7 @@ export const Route = createFileRoute("/evaluation/$slug")({
 
 function Lesson() {
   const { slug } = Route.useParams();
-  return <LessonTemplate section="evaluation" slug={slug} />;
+  const Content = evaluationContent[slug];
+  if (!Content) return <LessonTemplate section="evaluation" slug={slug} />;
+  return <LessonShell section="evaluation" slug={slug}><Content /></LessonShell>;
 }

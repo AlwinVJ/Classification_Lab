@@ -12,6 +12,8 @@ export const Route = createFileRoute("/classification/")({
       { name: "description", content: desc },
       { property: "og:title", content: "Introduction to Classification — Classification Lab" },
       { property: "og:description", content: desc },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ClassificationLanding,

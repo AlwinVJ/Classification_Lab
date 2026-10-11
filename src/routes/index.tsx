@@ -11,6 +11,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: desc },
       { property: "og:title", content: "Classification Lab — A visual guide to ML classification" },
       { property: "og:description", content: desc },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,

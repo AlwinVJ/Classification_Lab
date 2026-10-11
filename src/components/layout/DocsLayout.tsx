@@ -2,6 +2,9 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { sections } from "@/lib/curriculum";
 
+const lessonRoutes = { classification: "/classification/$slug", evaluation: "/evaluation/$slug", algorithms: "/algorithms/$slug" } as const;
+const overviewRoutes = { classification: "/classification", evaluation: "/evaluation", algorithms: "/algorithms" } as const;
+
 export function DocsLayout({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
@@ -10,7 +13,7 @@ export function DocsLayout({ children }: { children: ReactNode }) {
       <aside className="sticky top-20 hidden h-[calc(100vh-6rem)] w-56 shrink-0 overflow-y-auto md:block">
         {sections.map((s) => (
           <div key={s.id} className="mb-6">
-            <Link to={`/${s.id}` as "/classification"} className="mb-2 block font-mono text-xs uppercase tracking-wider text-muted-foreground">
+            <Link to={overviewRoutes[s.id]} className="mb-2 block font-mono text-xs uppercase tracking-wider text-muted-foreground">
               {s.title}
             </Link>
             <ul className="space-y-0.5 border-l">
@@ -19,13 +22,13 @@ export function DocsLayout({ children }: { children: ReactNode }) {
                 const active = path === href;
                 return (
                   <li key={l.slug}>
-                    <a
-                      href={href}
-                      onClick={(e) => { e.preventDefault(); navigate({ to: href }); }}
+                    <Link
+                      to={lessonRoutes[s.id]}
+                      params={{ slug: l.slug }}
                       className={`-ml-px block border-l py-1 pl-3 text-sm ${active ? "border-primary font-medium text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
                     >
                       {l.title}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}

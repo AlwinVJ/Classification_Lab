@@ -12,3 +12,5 @@
 - Curriculum (sections/lessons) lives in src/lib/curriculum.ts; nav, sidebar and dynamic lesson routes derive from it — add lessons there.
 - Real lesson content lives in src/content/<section>.tsx as a slug→component map; the $slug route renders it inside LessonShell and falls back to LessonTemplate placeholders.
 - Site is stateless: no auth, tracking or progress storage; localStorage only for theme preference.
+- Evaluation math and deterministic scored datasets live in src/lib/evaluation.ts; reusable browser-only educational controls consume them so count, threshold and curve views share the same calculations.
+- Prerender all public curriculum routes from the curriculum at build time so the same stateless site can be served by root-hosted static hosting without an application server.

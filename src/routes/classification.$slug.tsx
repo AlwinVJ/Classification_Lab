@@ -19,6 +19,8 @@ export const Route = createFileRoute("/classification/$slug")({
         { name: "description", content: loaderData.summary },
         { property: "og:title", content: title },
         { property: "og:description", content: loaderData.summary },
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },

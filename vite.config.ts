@@ -5,9 +5,14 @@
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { sections } from "./src/lib/curriculum";
 
 export default defineConfig({
   tanstackStart: {
+    pages: ["/", "/compare", "/resources", ...sections.flatMap(section => [
+      `/${section.id}`, ...section.lessons.map(lesson => `/${section.id}/${lesson.slug}`),
+    ])].map(path => ({ path })),
+    prerender: { enabled: true, autoStaticPathsDiscovery: false },
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },

@@ -14,6 +14,8 @@ export const Route = createFileRoute("/resources")({
       { name: "description", content: d },
       { property: "og:title", content: "Resources — Classification Lab" },
       { property: "og:description", content: d },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (
