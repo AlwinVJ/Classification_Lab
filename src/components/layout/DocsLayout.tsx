@@ -17,17 +17,19 @@ export function DocsLayout({ children }: { children: ReactNode }) {
               {s.title}
             </Link>
             <ul className="space-y-0.5 border-l">
-              {s.lessons.map((l) => {
+              {s.lessons.map((l, i) => {
                 const href = `/${s.id}/${l.slug}`;
                 const active = path === href;
+                const groupStart = l.group && s.lessons[i - 1]?.group !== l.group;
                 return (
-                  <li key={l.slug}>
+                  <li key={l.slug} className={l.group ? "pl-3" : undefined}>
+                    {groupStart && <p className="-ml-3 mt-1 py-1 pl-3 text-sm font-medium text-foreground">{l.group}</p>}
                     <Link
                       to={lessonRoutes[s.id]}
                       params={{ slug: l.slug }}
                       className={`-ml-px block border-l py-1 pl-3 text-sm ${active ? "border-primary font-medium text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
                     >
-                      {l.title}
+                      {l.navTitle ?? l.title}
                     </Link>
                   </li>
                 );
@@ -48,7 +50,7 @@ export function DocsLayout({ children }: { children: ReactNode }) {
               <optgroup key={s.id} label={s.title}>
                 <option value={`/${s.id}`}>{s.title} overview</option>
                 {s.lessons.map((l) => (
-                  <option key={l.slug} value={`/${s.id}/${l.slug}`}>{l.title}</option>
+                  <option key={l.slug} value={`/${s.id}/${l.slug}`}>{l.group ? `${l.group} · ${l.navTitle ?? l.title}` : l.title}</option>
                 ))}
               </optgroup>
             ))}

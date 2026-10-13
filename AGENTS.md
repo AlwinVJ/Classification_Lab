@@ -14,3 +14,4 @@
 - Site is stateless: no auth, tracking or progress storage; localStorage only for theme preference.
 - Evaluation math and deterministic scored datasets live in src/lib/evaluation.ts; reusable browser-only educational controls consume them so count, threshold and curve views share the same calculations.
 - Prerender all public curriculum routes from the curriculum at build time so the same stateless site can be served by root-hosted static hosting without an application server.
+- Lessons may set `group`/`navTitle` in curriculum.ts to nest under a topic in the sidebar; Logistic Regression math lives in src/lib/logistic.ts and reuses evaluation.ts counting.

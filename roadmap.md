@@ -3,3 +3,4 @@
 - [x] Phase 2 evaluation lessons, overview and reference material
 - [x] Phase 2 interactive confusion matrix, metrics, thresholds and curves
 - [x] Verify Phase 2 calculations, keyboard controls, mobile, theme and all Phase 1 lesson routes
+- [x] Phase 3 Logistic Regression module (15 lessons, interactive labs)

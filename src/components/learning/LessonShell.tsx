@@ -20,7 +20,7 @@ export function LessonShell({ section, slug, children }: { section: string; slug
   return (
     <DocsLayout>
       <article className="max-w-3xl">
-        <p className="font-mono text-xs uppercase tracking-wider text-primary">{lesson.section.title}</p>
+        <p className="font-mono text-xs uppercase tracking-wider text-primary">{lesson.section.title}{lesson.group && lesson.group !== lesson.title ? ` · ${lesson.group}` : ""}</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">{lesson.title}</h1>
         <p className="mt-3 text-lg text-muted-foreground">{lesson.summary}</p>
         <div className="mt-8">{children}</div>
