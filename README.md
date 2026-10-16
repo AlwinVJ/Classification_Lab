@@ -568,9 +568,9 @@ Detailed educational content and interactive algorithm visualizations will be in
 * [x] Define no-tracking philosophy
 * [X] Build Phase 0 foundation
 * [X] Add classification fundamentals
-* [ ] Add evaluation metrics
-* [ ] Add Logistic Regression
-* [ ] Add KNN
+* [X] Add evaluation metrics
+* [X] Add Logistic Regression
+* [X] Add KNN
 * [ ] Add Decision Trees
 * [ ] Add SVM
 * [ ] Add model comparison
