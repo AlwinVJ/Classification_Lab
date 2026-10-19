@@ -5,3 +5,4 @@
 - [x] Verify Phase 2 calculations, keyboard controls, mobile, theme and all Phase 1 lesson routes
 - [x] Phase 3 Logistic Regression module (15 lessons, interactive labs)
 - [x] Phase 4 KNN module (16 lessons, interactive lab and experiments)
+- [x] Phase 5 Decision Trees module (23 lessons, interactive tools)

@@ -4,6 +4,7 @@ import { LessonTemplate } from "@/components/learning/LessonTemplate";
 import { LessonShell } from "@/components/learning/LessonShell";
 import { algorithmsContent } from "@/content/algorithms";
 import { knnContent } from "@/content/knn";
+import { treesContent } from "@/content/trees";
 
 export const Route = createFileRoute("/algorithms/$slug")({
   loader: ({ params }) => {
@@ -30,7 +31,7 @@ export const Route = createFileRoute("/algorithms/$slug")({
 
 function Lesson() {
   const { slug } = Route.useParams();
-  const Content = algorithmsContent[slug] ?? knnContent[slug];
+  const Content = algorithmsContent[slug] ?? knnContent[slug] ?? treesContent[slug];
   if (!Content) return <LessonTemplate section="algorithms" slug={slug} />;
   return <LessonShell section="algorithms" slug={slug}><Content /></LessonShell>;
 }

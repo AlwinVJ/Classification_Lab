@@ -14,7 +14,7 @@ import { ConfusionMatrix, MetricCards } from "./EvaluationViz";
 const f = (v: number, d = 2) => v.toFixed(d);
 const METRIC_LABEL: Record<Metric, string> = { euclidean: "Euclidean", manhattan: "Manhattan", minkowski: "Minkowski (p = 3)" };
 
-function Panel({ title, children, className }: { title: string; children: ReactNode; className?: string | undefined }) {
+export function Panel({ title, children, className }: { title: string; children: ReactNode; className?: string | undefined }) {
   return (
     <figure className={cn("my-6 overflow-hidden rounded-lg border", className)}>
       <figcaption className="border-b bg-muted/40 px-4 py-2 font-mono text-xs text-muted-foreground">{title}</figcaption>
@@ -22,14 +22,14 @@ function Panel({ title, children, className }: { title: string; children: ReactN
     </figure>
   );
 }
-function Stat({ label, value, tone }: { label: string; value: ReactNode; tone?: "a" | "b" | "primary" | undefined }) {
+export function Stat({ label, value, tone }: { label: string; value: ReactNode; tone?: "a" | "b" | "primary" | undefined }) {
   return (
     <div className={cn("rounded-md border p-2 text-center", tone === "a" && "bg-primary/10", tone === "b" && "bg-secondary-accent/15", tone === "primary" && "border-primary/50")}>
       <dt className="text-xs text-muted-foreground">{label}</dt><dd className="font-mono text-base sm:text-lg">{value}</dd>
     </div>
   );
 }
-function Choice<T extends string | number>({ label, value, options, onChange, format = String }: { label: string; value: T; options: readonly T[]; onChange: (v: T) => void; format?: (v: T) => string }) {
+export function Choice<T extends string | number | null>({ label, value, options, onChange, format = (v: T) => String(v) }: { label: string; value: T; options: readonly T[]; onChange: (v: T) => void; format?: (v: T) => string }) {
   return (
     <div role="group" aria-label={label}>
       <p className="mb-1 text-sm font-medium">{label}</p>
