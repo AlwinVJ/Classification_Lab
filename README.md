@@ -572,7 +572,7 @@ Detailed educational content and interactive algorithm visualizations will be in
 * [X] Add Logistic Regression
 * [X] Add KNN
 * [X] Add Decision Trees
-* [ ] Add SVM
+* [X] Add SVM
 * [ ] Add model comparison
 * [ ] Add practical examples
 * [ ] Add interactive visualizations

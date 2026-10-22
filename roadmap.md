@@ -6,3 +6,4 @@
 - [x] Phase 3 Logistic Regression module (15 lessons, interactive labs)
 - [x] Phase 4 KNN module (16 lessons, interactive lab and experiments)
 - [x] Phase 5 Decision Trees module (23 lessons, interactive tools)
+- [x] Phase 6 SVM module (28 lessons, interactive tools)
