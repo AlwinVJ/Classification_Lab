@@ -573,9 +573,9 @@ Detailed educational content and interactive algorithm visualizations will be in
 * [X] Add KNN
 * [X] Add Decision Trees
 * [X] Add SVM
-* [ ] Add model comparison
-* [ ] Add practical examples
-* [ ] Add interactive visualizations
+* [X] Add model comparison
+* [X] Add practical examples
+* [X] Add interactive visualizations
 * [ ] Add Python/Scikit-learn implementations
 * [ ] Final accessibility and responsive review
 * [ ] Deploy to GitHub Pages

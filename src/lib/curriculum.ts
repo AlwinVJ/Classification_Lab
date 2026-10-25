@@ -1,6 +1,6 @@
 /** `group` nests a lesson under a topic in navigation; `navTitle` is its shorter sidebar label. */
 export type Lesson = { slug: string; title: string; summary: string; group?: string; navTitle?: string };
-export type Section = { id: "classification" | "evaluation" | "algorithms"; title: string; blurb: string; lessons: Lesson[] };
+export type Section = { id: "classification" | "evaluation" | "algorithms" | "compare"; title: string; blurb: string; lessons: Lesson[] };
 
 export const sections: Section[] = [
   {
@@ -122,6 +122,25 @@ export const sections: Section[] = [
       { slug: "svm-advantages-limitations", title: "SVM Advantages & Limitations", navTitle: "Advantages and Limitations", summary: "Strengths, weaknesses, when to use and common mistakes.", group: "Support Vector Machines" },
       { slug: "svm-experiments", title: "Interactive SVM Experiments", navTitle: "Interactive Experiments", summary: "Eight experiments: change one thing, observe the result.", group: "Support Vector Machines" },
       { slug: "svm-cheat-sheet", title: "SVM Cheat Sheet", navTitle: "Cheat Sheet", summary: "Formulas, Python reference and concept map.", group: "Support Vector Machines" },
+    ],
+  },
+  {
+    id: "compare",
+    title: "Classification Model Comparison",
+    blurb: "Compare algorithms, interpret results, and choose the right classifier.",
+    lessons: [
+      { slug: "why-compare", title: "Why Compare Classification Models?", summary: "Different assumptions, different errors: why no classifier wins everywhere." },
+      { slug: "four-classifiers", title: "The Four Classifiers at a Glance", summary: "Compare boundaries, scaling, interpretability and computational trade-offs." },
+      { slug: "fair-comparison", title: "Building a Fair Comparison", summary: "Identical splits, stratified folds and preprocessing without leakage." },
+      { slug: "comparison-lab", title: "Interactive Model Comparison Lab", summary: "Fit four classifiers on shared synthetic data and inspect actual predictions." },
+      { slug: "understanding-performance", title: "Understanding Model Performance", summary: "Read metrics, confusion matrices and positive-class error consequences." },
+      { slug: "bias-variance", title: "Bias, Variance, and Generalization", summary: "How complexity can affect training and unseen performance." },
+      { slug: "tuning-selection", title: "Hyperparameter Tuning and Model Selection", summary: "Explore settings using training-data cross-validation, not final test scores." },
+      { slug: "real-world", title: "Choosing Models for Real-World Problems", summary: "Use error costs, data characteristics and deployment requirements to form candidates." },
+      { slug: "scikit-learn", title: "Scikit-learn Implementation", summary: "A reproducible Python comparison using pipelines and untouched final test data." },
+      { slug: "common-mistakes", title: "Common Mistakes", summary: "Recognize misleading comparisons and replace them with better practices." },
+      { slug: "practice", title: "Practice Scenarios", summary: "Reason through six model-selection problems with feedback and retry." },
+      { slug: "cheat-sheet", title: "Cheat Sheet and Concept Map", summary: "Connect algorithms, preprocessing, validation, metrics and final selection." },
     ],
   },
 ];

@@ -9,7 +9,7 @@ import { sections } from "./src/lib/curriculum";
 
 export default defineConfig({
   tanstackStart: {
-    pages: ["/", "/compare", "/resources", ...sections.flatMap(section => [
+    pages: ["/", "/resources", ...sections.flatMap(section => [
       `/${section.id}`, ...section.lessons.map(lesson => `/${section.id}/${lesson.slug}`),
     ])].map(path => ({ path })),
     prerender: { enabled: true, autoStaticPathsDiscovery: false },

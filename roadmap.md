@@ -7,3 +7,6 @@
 - [x] Phase 4 KNN module (16 lessons, interactive lab and experiments)
 - [x] Phase 5 Decision Trees module (23 lessons, interactive tools)
 - [x] Phase 6 SVM module (28 lessons, interactive tools)
+- [x] Phase 7 Compare curriculum and twelve lessons
+- [x] Phase 7 genuine fitted comparison lab, validation tuning, and model-selection exercises
+- [x] Verify Phase 7 calculations, interactions, themes, layouts, and earlier phases

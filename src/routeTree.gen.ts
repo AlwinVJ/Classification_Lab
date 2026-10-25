@@ -16,6 +16,8 @@ import { Route as AlgorithmsIndexRouteImport } from './routes/algorithms.index'
 import { Route as AlgorithmsSlugRouteImport } from './routes/algorithms.$slug'
 import { Route as ClassificationIndexRouteImport } from './routes/classification.index'
 import { Route as ClassificationSlugRouteImport } from './routes/classification.$slug'
+import { Route as CompareIndexRouteImport } from './routes/compare.index'
+import { Route as CompareSlugRouteImport } from './routes/compare.$slug'
 import { Route as EvaluationIndexRouteImport } from './routes/evaluation.index'
 import { Route as EvaluationSlugRouteImport } from './routes/evaluation.$slug'
 
@@ -54,6 +56,16 @@ const ClassificationSlugRoute = ClassificationSlugRouteImport.update({
   path: '/classification/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareIndexRoute = CompareIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CompareRoute,
+} as any)
+const CompareSlugRoute = CompareSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CompareRoute,
+} as any)
 const EvaluationIndexRoute = EvaluationIndexRouteImport.update({
   id: '/evaluation/',
   path: '/evaluation/',
@@ -67,36 +79,41 @@ const EvaluationSlugRoute = EvaluationSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/compare': typeof CompareRoute
+  '/compare': typeof CompareRouteWithChildren
   '/resources': typeof ResourcesRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
+  '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
   '/algorithms/': typeof AlgorithmsIndexRoute
   '/classification/': typeof ClassificationIndexRoute
+  '/compare/': typeof CompareIndexRoute
   '/evaluation/': typeof EvaluationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/compare': typeof CompareRoute
   '/resources': typeof ResourcesRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
+  '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
   '/algorithms': typeof AlgorithmsIndexRoute
   '/classification': typeof ClassificationIndexRoute
+  '/compare': typeof CompareIndexRoute
   '/evaluation': typeof EvaluationIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/compare': typeof CompareRoute
+  '/compare': typeof CompareRouteWithChildren
   '/resources': typeof ResourcesRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
+  '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
   '/algorithms/': typeof AlgorithmsIndexRoute
   '/classification/': typeof ClassificationIndexRoute
+  '/compare/': typeof CompareIndexRoute
   '/evaluation/': typeof EvaluationIndexRoute
 }
 export interface FileRouteTypes {
@@ -107,20 +124,23 @@ export interface FileRouteTypes {
     | '/resources'
     | '/algorithms/$slug'
     | '/classification/$slug'
+    | '/compare/$slug'
     | '/evaluation/$slug'
     | '/algorithms/'
     | '/classification/'
+    | '/compare/'
     | '/evaluation/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/compare'
     | '/resources'
     | '/algorithms/$slug'
     | '/classification/$slug'
+    | '/compare/$slug'
     | '/evaluation/$slug'
     | '/algorithms'
     | '/classification'
+    | '/compare'
     | '/evaluation'
   id:
     | '__root__'
@@ -129,15 +149,17 @@ export interface FileRouteTypes {
     | '/resources'
     | '/algorithms/$slug'
     | '/classification/$slug'
+    | '/compare/$slug'
     | '/evaluation/$slug'
     | '/algorithms/'
     | '/classification/'
+    | '/compare/'
     | '/evaluation/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CompareRoute: typeof CompareRoute
+  CompareRoute: typeof CompareRouteWithChildren
   ResourcesRoute: typeof ResourcesRoute
   AlgorithmsSlugRoute: typeof AlgorithmsSlugRoute
   ClassificationSlugRoute: typeof ClassificationSlugRoute
@@ -198,6 +220,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClassificationSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare/': {
+      id: '/compare/'
+      path: '/'
+      fullPath: '/compare/'
+      preLoaderRoute: typeof CompareIndexRouteImport
+      parentRoute: typeof CompareRoute
+    }
+    '/compare/$slug': {
+      id: '/compare/$slug'
+      path: '/$slug'
+      fullPath: '/compare/$slug'
+      preLoaderRoute: typeof CompareSlugRouteImport
+      parentRoute: typeof CompareRoute
+    }
     '/evaluation/': {
       id: '/evaluation/'
       path: '/evaluation'
@@ -215,9 +251,22 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface CompareRouteChildren {
+  CompareSlugRoute: typeof CompareSlugRoute
+  CompareIndexRoute: typeof CompareIndexRoute
+}
+
+const CompareRouteChildren: CompareRouteChildren = {
+  CompareSlugRoute: CompareSlugRoute,
+  CompareIndexRoute: CompareIndexRoute,
+}
+
+const CompareRouteWithChildren =
+  CompareRoute._addFileChildren(CompareRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CompareRoute: CompareRoute,
+  CompareRoute: CompareRouteWithChildren,
   ResourcesRoute: ResourcesRoute,
   AlgorithmsSlugRoute: AlgorithmsSlugRoute,
   ClassificationSlugRoute: ClassificationSlugRoute,
