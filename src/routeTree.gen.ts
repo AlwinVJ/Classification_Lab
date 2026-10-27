@@ -10,8 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdvancedRouteImport } from './routes/advanced'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as AdvancedIndexRouteImport } from './routes/advanced.index'
+import { Route as AdvancedSlugRouteImport } from './routes/advanced.$slug'
 import { Route as AlgorithmsIndexRouteImport } from './routes/algorithms.index'
 import { Route as AlgorithmsSlugRouteImport } from './routes/algorithms.$slug'
 import { Route as ClassificationIndexRouteImport } from './routes/classification.index'
@@ -26,6 +29,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdvancedRoute = AdvancedRouteImport.update({
+  id: '/advanced',
+  path: '/advanced',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
@@ -35,6 +43,16 @@ const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdvancedIndexRoute = AdvancedIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdvancedRoute,
+} as any)
+const AdvancedSlugRoute = AdvancedSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AdvancedRoute,
 } as any)
 const AlgorithmsIndexRoute = AlgorithmsIndexRouteImport.update({
   id: '/algorithms/',
@@ -79,12 +97,15 @@ const EvaluationSlugRoute = EvaluationSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/advanced': typeof AdvancedRouteWithChildren
   '/compare': typeof CompareRouteWithChildren
   '/resources': typeof ResourcesRoute
+  '/advanced/$slug': typeof AdvancedSlugRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
   '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
+  '/advanced/': typeof AdvancedIndexRoute
   '/algorithms/': typeof AlgorithmsIndexRoute
   '/classification/': typeof ClassificationIndexRoute
   '/compare/': typeof CompareIndexRoute
@@ -93,10 +114,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/resources': typeof ResourcesRoute
+  '/advanced/$slug': typeof AdvancedSlugRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
   '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
+  '/advanced': typeof AdvancedIndexRoute
   '/algorithms': typeof AlgorithmsIndexRoute
   '/classification': typeof ClassificationIndexRoute
   '/compare': typeof CompareIndexRoute
@@ -105,12 +128,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/advanced': typeof AdvancedRouteWithChildren
   '/compare': typeof CompareRouteWithChildren
   '/resources': typeof ResourcesRoute
+  '/advanced/$slug': typeof AdvancedSlugRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
   '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
+  '/advanced/': typeof AdvancedIndexRoute
   '/algorithms/': typeof AlgorithmsIndexRoute
   '/classification/': typeof ClassificationIndexRoute
   '/compare/': typeof CompareIndexRoute
@@ -120,12 +146,15 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/advanced'
     | '/compare'
     | '/resources'
+    | '/advanced/$slug'
     | '/algorithms/$slug'
     | '/classification/$slug'
     | '/compare/$slug'
     | '/evaluation/$slug'
+    | '/advanced/'
     | '/algorithms/'
     | '/classification/'
     | '/compare/'
@@ -134,10 +163,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/resources'
+    | '/advanced/$slug'
     | '/algorithms/$slug'
     | '/classification/$slug'
     | '/compare/$slug'
     | '/evaluation/$slug'
+    | '/advanced'
     | '/algorithms'
     | '/classification'
     | '/compare'
@@ -145,12 +176,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/advanced'
     | '/compare'
     | '/resources'
+    | '/advanced/$slug'
     | '/algorithms/$slug'
     | '/classification/$slug'
     | '/compare/$slug'
     | '/evaluation/$slug'
+    | '/advanced/'
     | '/algorithms/'
     | '/classification/'
     | '/compare/'
@@ -159,6 +193,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdvancedRoute: typeof AdvancedRouteWithChildren
   CompareRoute: typeof CompareRouteWithChildren
   ResourcesRoute: typeof ResourcesRoute
   AlgorithmsSlugRoute: typeof AlgorithmsSlugRoute
@@ -178,6 +213,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/advanced': {
+      id: '/advanced'
+      path: '/advanced'
+      fullPath: '/advanced'
+      preLoaderRoute: typeof AdvancedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compare': {
       id: '/compare'
       path: '/compare'
@@ -191,6 +233,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/advanced/': {
+      id: '/advanced/'
+      path: '/'
+      fullPath: '/advanced/'
+      preLoaderRoute: typeof AdvancedIndexRouteImport
+      parentRoute: typeof AdvancedRoute
+    }
+    '/advanced/$slug': {
+      id: '/advanced/$slug'
+      path: '/$slug'
+      fullPath: '/advanced/$slug'
+      preLoaderRoute: typeof AdvancedSlugRouteImport
+      parentRoute: typeof AdvancedRoute
     }
     '/algorithms/': {
       id: '/algorithms/'
@@ -251,6 +307,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdvancedRouteChildren {
+  AdvancedSlugRoute: typeof AdvancedSlugRoute
+  AdvancedIndexRoute: typeof AdvancedIndexRoute
+}
+
+const AdvancedRouteChildren: AdvancedRouteChildren = {
+  AdvancedSlugRoute: AdvancedSlugRoute,
+  AdvancedIndexRoute: AdvancedIndexRoute,
+}
+
+const AdvancedRouteWithChildren = AdvancedRoute._addFileChildren(
+  AdvancedRouteChildren,
+)
+
 interface CompareRouteChildren {
   CompareSlugRoute: typeof CompareSlugRoute
   CompareIndexRoute: typeof CompareIndexRoute
@@ -266,6 +336,7 @@ const CompareRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdvancedRoute: AdvancedRouteWithChildren,
   CompareRoute: CompareRouteWithChildren,
   ResourcesRoute: ResourcesRoute,
   AlgorithmsSlugRoute: AlgorithmsSlugRoute,

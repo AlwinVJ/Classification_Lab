@@ -8,6 +8,7 @@ const nav = [
   { to: "/evaluation", label: "Evaluation" },
   { to: "/algorithms", label: "Algorithms" },
   { to: "/compare", label: "Compare" },
+  { to: "/advanced", label: "Advanced" },
   { to: "/resources", label: "Resources" },
 ] as const;
 
@@ -15,12 +16,12 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-4">
+      <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
         <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
           <span className="grid h-6 w-6 place-items-center rounded bg-primary font-mono text-xs text-primary-foreground">CL</span>
           Classification Lab
         </Link>
-        <nav className="hidden flex-1 items-center gap-1 md:flex">
+        <nav className="hidden flex-1 items-center gap-1 lg:flex">
           {nav.map((n) => (
             <Link
               key={n.to}
@@ -35,7 +36,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-1">
           <ThemeToggle />
           <button
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md md:hidden"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-md lg:hidden"
             aria-label="Open menu"
             aria-expanded={open}
             onClick={() => setOpen(!open)}
@@ -45,7 +46,7 @@ export function Header() {
         </div>
       </div>
       {open && (
-        <nav className="border-t px-4 py-2 md:hidden">
+        <nav className="border-t px-4 py-2 lg:hidden">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="block py-2 text-sm">
               {n.label}

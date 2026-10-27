@@ -10,3 +10,6 @@
 - [x] Phase 7 Compare curriculum and twelve lessons
 - [x] Phase 7 genuine fitted comparison lab, validation tuning, and model-selection exercises
 - [x] Verify Phase 7 calculations, interactions, themes, layouts, and earlier phases
+- [x] Phase 8 thirteen advanced lessons and Python reference workflows
+- [x] Phase 8 threshold, calibration, imbalance, ensemble and interpretation experiments
+- [x] Verify Phase 8 math, scenarios, navigation, layouts and earlier phases

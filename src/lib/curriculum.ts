@@ -1,6 +1,6 @@
 /** `group` nests a lesson under a topic in navigation; `navTitle` is its shorter sidebar label. */
 export type Lesson = { slug: string; title: string; summary: string; group?: string; navTitle?: string };
-export type Section = { id: "classification" | "evaluation" | "algorithms" | "compare"; title: string; blurb: string; lessons: Lesson[] };
+export type Section = { id: "classification" | "evaluation" | "algorithms" | "compare" | "advanced"; title: string; blurb: string; lessons: Lesson[] };
 
 export const sections: Section[] = [
   {
@@ -141,6 +141,26 @@ export const sections: Section[] = [
       { slug: "common-mistakes", title: "Common Mistakes", summary: "Recognize misleading comparisons and replace them with better practices." },
       { slug: "practice", title: "Practice Scenarios", summary: "Reason through six model-selection problems with feedback and retry." },
       { slug: "cheat-sheet", title: "Cheat Sheet and Concept Map", summary: "Connect algorithms, preprocessing, validation, metrics and final selection." },
+    ],
+  },
+  {
+    id: "advanced",
+    title: "Advanced Classification Concepts",
+    blurb: "Improve classification decisions through threshold analysis, probability calibration, imbalance handling, and ensemble learning.",
+    lessons: [
+      { slug: "beyond-basic", title: "Beyond Basic Classification", summary: "Connect labels, decision scores and estimated probabilities to real decisions." },
+      { slug: "thresholds-costs", title: "Classification Thresholds and Decision Costs", summary: "Inspect actual errors and weigh their consequences across thresholds." },
+      { slug: "calibration", title: "Probability Calibration", summary: "Compare predicted probabilities with observed frequencies and Brier scores." },
+      { slug: "imbalance", title: "Handling Imbalanced Classification", summary: "Rare positives, balanced accuracy, class weights and leakage-safe resampling." },
+      { slug: "ensembles", title: "Introduction to Ensemble Learning", summary: "How bagging, boosting, voting and stacking combine models differently." },
+      { slug: "bagging-forests", title: "Bagging and Random Forests", summary: "Bootstrap samples, diverse trees, aggregation and out-of-bag evaluation." },
+      { slug: "boosting", title: "Boosting: AdaBoost and Gradient Boosting", summary: "Sequential corrections, learning rate and the need for validation." },
+      { slug: "voting-stacking", title: "Voting and Stacking", summary: "Calculate hard and soft votes and understand out-of-fold meta-learning." },
+      { slug: "interpretation", title: "Feature Importance and Model Interpretation", summary: "Inspect model reliance without confusing predictive association with causation." },
+      { slug: "workflow", title: "Practical Classification Workflow", summary: "From objective and clean validation to final evaluation and deployment considerations." },
+      { slug: "common-mistakes", title: "Common Mistakes", summary: "Seventeen pitfalls in decisions, calibration, imbalance and ensembles." },
+      { slug: "practice", title: "Interactive Practice Scenarios", summary: "Reason through eight realistic problems with feedback and retry." },
+      { slug: "cheat-sheet", title: "Cheat Sheet and Concept Map", summary: "A compact reference connecting advanced methods to reliable evaluation." },
     ],
   },
 ];

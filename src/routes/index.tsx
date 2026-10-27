@@ -23,6 +23,7 @@ const areas = [
   { to: "/evaluation", title: "Model Evaluation", body: "Understand confusion matrices, accuracy, precision, recall, F1-score, ROC-AUC, and precision-recall trade-offs." },
   { to: "/algorithms", title: "Classification Algorithms", body: "Explore Logistic Regression, KNN, Decision Trees, and Support Vector Machines." },
   { to: "/compare", title: "Model Comparison", body: "Understand how and why different algorithms behave differently on the same dataset." },
+  { to: "/advanced", title: "Advanced Classification", body: "Explore decision costs, calibration, rare classes, ensembles and model interpretation." },
 ] as const;
 
 function Index() {
