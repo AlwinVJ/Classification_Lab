@@ -30,3 +30,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local production preview
+/local-preview/
+
+# Temporary configuration backups
+package.json.backup
+vite.config.ts.backup
