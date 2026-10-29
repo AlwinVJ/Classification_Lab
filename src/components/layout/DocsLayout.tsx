@@ -2,8 +2,8 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { sections } from "@/lib/curriculum";
 
-const lessonRoutes = { classification: "/classification/$slug", evaluation: "/evaluation/$slug", algorithms: "/algorithms/$slug", compare: "/compare/$slug", advanced: "/advanced/$slug" } as const;
-const overviewRoutes = { classification: "/classification", evaluation: "/evaluation", algorithms: "/algorithms", compare: "/compare", advanced: "/advanced" } as const;
+const lessonRoutes = { classification: "/classification/$slug", evaluation: "/evaluation/$slug", algorithms: "/algorithms/$slug", compare: "/compare/$slug", advanced: "/advanced/$slug", multiclass: "/multiclass/$slug" } as const;
+const overviewRoutes = { classification: "/classification", evaluation: "/evaluation", algorithms: "/algorithms", compare: "/compare", advanced: "/advanced", multiclass: "/multiclass" } as const;
 
 export function DocsLayout({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });

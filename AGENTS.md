@@ -17,3 +17,5 @@
 - Lessons may set `group`/`navTitle` in curriculum.ts to nest under a topic in the sidebar; algorithm math lives in src/lib/<algorithm>.ts (logistic.ts, knn.ts, tree.ts, svm.ts — a small deterministic SMO solver so SVM visuals re-fit real models) and reuses evaluation.ts counting; each algorithm's lessons live in their own src/content file merged by the algorithms $slug route.
 - Compare is a curriculum section with a pathless-content parent and index/slug leaves; comparison.ts adapts existing model implementations with fold-local preprocessing and a held-out final test so experiments use real predictions without storing learner state.
 - Advanced is a curriculum section with an Outlet parent and index/slug leaves; advanced.ts owns deterministic calculations, separate visualization modules label synthetic or simplified experiments explicitly, and advanced-reference.ts holds reference-only Python workflows.
+
+- Multiclass is an Outlet section with index/slug leaves; multiclass.ts owns stable softmax and count-derived metrics, with undefined denominators retained rather than silently scored and educational simulations explicitly labelled.

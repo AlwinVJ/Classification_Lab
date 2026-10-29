@@ -1,6 +1,6 @@
 /** `group` nests a lesson under a topic in navigation; `navTitle` is its shorter sidebar label. */
 export type Lesson = { slug: string; title: string; summary: string; group?: string; navTitle?: string };
-export type Section = { id: "classification" | "evaluation" | "algorithms" | "compare" | "advanced"; title: string; blurb: string; lessons: Lesson[] };
+export type Section = { id: "classification" | "evaluation" | "algorithms" | "compare" | "advanced" | "multiclass"; title: string; blurb: string; lessons: Lesson[] };
 
 export const sections: Section[] = [
   {
@@ -161,6 +161,28 @@ export const sections: Section[] = [
       { slug: "common-mistakes", title: "Common Mistakes", summary: "Seventeen pitfalls in decisions, calibration, imbalance and ensembles." },
       { slug: "practice", title: "Interactive Practice Scenarios", summary: "Reason through eight realistic problems with feedback and retry." },
       { slug: "cheat-sheet", title: "Cheat Sheet and Concept Map", summary: "A compact reference connecting advanced methods to reliable evaluation." },
+    ],
+  },
+  {
+    id: "multiclass",
+    title: "Multiclass and Multi-Label Classification",
+    blurb: "Extend classification beyond binary predictions and learn to evaluate complex classification problems.",
+    lessons: [
+      { slug: "problem-types", title: "Binary vs Multiclass vs Multi-Label Classification", summary: "One exclusive class or a set of simultaneous labels." },
+      { slug: "mathematics", title: "Multiclass Classification Mathematics", summary: "Feature vectors, class scores, argmax and probability distributions." },
+      { slug: "ovr-ovo", title: "One-vs-Rest and One-vs-One", summary: "Construct multiclass decisions from binary classifiers." },
+      { slug: "softmax", title: "Softmax and Multiclass Probabilities", summary: "Normalize scores with stable softmax and contrast independent sigmoid outputs." },
+      { slug: "algorithms", title: "Multiclass Classification Algorithms", summary: "Extend Logistic Regression, KNN, Decision Trees and SVM." },
+      { slug: "multiclass-metrics", title: "Multiclass Evaluation Metrics", summary: "Confusion matrices and per-class, macro, micro and weighted metrics." },
+      { slug: "multilabel-fundamentals", title: "Multi-Label Classification Fundamentals", summary: "Binary label matrices and simultaneous label probabilities." },
+      { slug: "multilabel-strategies", title: "Multi-Label Strategies and Algorithms", summary: "Binary relevance, classifier chains and multi-output wrappers." },
+      { slug: "multilabel-metrics", title: "Multi-Label Evaluation Metrics", summary: "Hamming loss, exact match and label-level averages." },
+      { slug: "classification-lab", title: "Interactive Classification Lab", summary: "Explore scores, probabilities, label thresholds and calculated metrics." },
+      { slug: "scikit-learn", title: "Practical Scikit-learn Implementations", summary: "Six reproducible Python workflows with leakage-safe evaluation." },
+      { slug: "applications", title: "Real-World Applications", summary: "Define targets, baselines, metrics and data-quality risks." },
+      { slug: "common-mistakes", title: "Common Mistakes", summary: "Avoid fifteen modeling, threshold and evaluation pitfalls." },
+      { slug: "practice", title: "Practice Scenarios", summary: "Reason through eight questions with feedback and retry." },
+      { slug: "cheat-sheet", title: "Cheat Sheet and Concept Map", summary: "Connect classification types, strategies, outputs and evaluation." },
     ],
   },
 ];

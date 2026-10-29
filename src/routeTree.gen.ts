@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdvancedRouteImport } from './routes/advanced'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as MulticlassRouteImport } from './routes/multiclass'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as AdvancedIndexRouteImport } from './routes/advanced.index'
 import { Route as AdvancedSlugRouteImport } from './routes/advanced.$slug'
@@ -23,6 +24,8 @@ import { Route as CompareIndexRouteImport } from './routes/compare.index'
 import { Route as CompareSlugRouteImport } from './routes/compare.$slug'
 import { Route as EvaluationIndexRouteImport } from './routes/evaluation.index'
 import { Route as EvaluationSlugRouteImport } from './routes/evaluation.$slug'
+import { Route as MulticlassIndexRouteImport } from './routes/multiclass.index'
+import { Route as MulticlassSlugRouteImport } from './routes/multiclass.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -37,6 +40,11 @@ const AdvancedRoute = AdvancedRouteImport.update({
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MulticlassRoute = MulticlassRouteImport.update({
+  id: '/multiclass',
+  path: '/multiclass',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -94,22 +102,35 @@ const EvaluationSlugRoute = EvaluationSlugRouteImport.update({
   path: '/evaluation/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MulticlassIndexRoute = MulticlassIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MulticlassRoute,
+} as any)
+const MulticlassSlugRoute = MulticlassSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => MulticlassRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/advanced': typeof AdvancedRouteWithChildren
   '/compare': typeof CompareRouteWithChildren
+  '/multiclass': typeof MulticlassRouteWithChildren
   '/resources': typeof ResourcesRoute
   '/advanced/$slug': typeof AdvancedSlugRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
   '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
+  '/multiclass/$slug': typeof MulticlassSlugRoute
   '/advanced/': typeof AdvancedIndexRoute
   '/algorithms/': typeof AlgorithmsIndexRoute
   '/classification/': typeof ClassificationIndexRoute
   '/compare/': typeof CompareIndexRoute
   '/evaluation/': typeof EvaluationIndexRoute
+  '/multiclass/': typeof MulticlassIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -119,28 +140,33 @@ export interface FileRoutesByTo {
   '/classification/$slug': typeof ClassificationSlugRoute
   '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
+  '/multiclass/$slug': typeof MulticlassSlugRoute
   '/advanced': typeof AdvancedIndexRoute
   '/algorithms': typeof AlgorithmsIndexRoute
   '/classification': typeof ClassificationIndexRoute
   '/compare': typeof CompareIndexRoute
   '/evaluation': typeof EvaluationIndexRoute
+  '/multiclass': typeof MulticlassIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/advanced': typeof AdvancedRouteWithChildren
   '/compare': typeof CompareRouteWithChildren
+  '/multiclass': typeof MulticlassRouteWithChildren
   '/resources': typeof ResourcesRoute
   '/advanced/$slug': typeof AdvancedSlugRoute
   '/algorithms/$slug': typeof AlgorithmsSlugRoute
   '/classification/$slug': typeof ClassificationSlugRoute
   '/compare/$slug': typeof CompareSlugRoute
   '/evaluation/$slug': typeof EvaluationSlugRoute
+  '/multiclass/$slug': typeof MulticlassSlugRoute
   '/advanced/': typeof AdvancedIndexRoute
   '/algorithms/': typeof AlgorithmsIndexRoute
   '/classification/': typeof ClassificationIndexRoute
   '/compare/': typeof CompareIndexRoute
   '/evaluation/': typeof EvaluationIndexRoute
+  '/multiclass/': typeof MulticlassIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -148,17 +174,20 @@ export interface FileRouteTypes {
     | '/'
     | '/advanced'
     | '/compare'
+    | '/multiclass'
     | '/resources'
     | '/advanced/$slug'
     | '/algorithms/$slug'
     | '/classification/$slug'
     | '/compare/$slug'
     | '/evaluation/$slug'
+    | '/multiclass/$slug'
     | '/advanced/'
     | '/algorithms/'
     | '/classification/'
     | '/compare/'
     | '/evaluation/'
+    | '/multiclass/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -168,33 +197,39 @@ export interface FileRouteTypes {
     | '/classification/$slug'
     | '/compare/$slug'
     | '/evaluation/$slug'
+    | '/multiclass/$slug'
     | '/advanced'
     | '/algorithms'
     | '/classification'
     | '/compare'
     | '/evaluation'
+    | '/multiclass'
   id:
     | '__root__'
     | '/'
     | '/advanced'
     | '/compare'
+    | '/multiclass'
     | '/resources'
     | '/advanced/$slug'
     | '/algorithms/$slug'
     | '/classification/$slug'
     | '/compare/$slug'
     | '/evaluation/$slug'
+    | '/multiclass/$slug'
     | '/advanced/'
     | '/algorithms/'
     | '/classification/'
     | '/compare/'
     | '/evaluation/'
+    | '/multiclass/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdvancedRoute: typeof AdvancedRouteWithChildren
   CompareRoute: typeof CompareRouteWithChildren
+  MulticlassRoute: typeof MulticlassRouteWithChildren
   ResourcesRoute: typeof ResourcesRoute
   AlgorithmsSlugRoute: typeof AlgorithmsSlugRoute
   ClassificationSlugRoute: typeof ClassificationSlugRoute
@@ -225,6 +260,13 @@ declare module '@tanstack/react-router' {
       path: '/compare'
       fullPath: '/compare'
       preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/multiclass': {
+      id: '/multiclass'
+      path: '/multiclass'
+      fullPath: '/multiclass'
+      preLoaderRoute: typeof MulticlassRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -304,6 +346,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvaluationSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/multiclass/': {
+      id: '/multiclass/'
+      path: '/'
+      fullPath: '/multiclass/'
+      preLoaderRoute: typeof MulticlassIndexRouteImport
+      parentRoute: typeof MulticlassRoute
+    }
+    '/multiclass/$slug': {
+      id: '/multiclass/$slug'
+      path: '/$slug'
+      fullPath: '/multiclass/$slug'
+      preLoaderRoute: typeof MulticlassSlugRouteImport
+      parentRoute: typeof MulticlassRoute
+    }
   }
 }
 
@@ -334,10 +390,25 @@ const CompareRouteChildren: CompareRouteChildren = {
 const CompareRouteWithChildren =
   CompareRoute._addFileChildren(CompareRouteChildren)
 
+interface MulticlassRouteChildren {
+  MulticlassSlugRoute: typeof MulticlassSlugRoute
+  MulticlassIndexRoute: typeof MulticlassIndexRoute
+}
+
+const MulticlassRouteChildren: MulticlassRouteChildren = {
+  MulticlassSlugRoute: MulticlassSlugRoute,
+  MulticlassIndexRoute: MulticlassIndexRoute,
+}
+
+const MulticlassRouteWithChildren = MulticlassRoute._addFileChildren(
+  MulticlassRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdvancedRoute: AdvancedRouteWithChildren,
   CompareRoute: CompareRouteWithChildren,
+  MulticlassRoute: MulticlassRouteWithChildren,
   ResourcesRoute: ResourcesRoute,
   AlgorithmsSlugRoute: AlgorithmsSlugRoute,
   ClassificationSlugRoute: ClassificationSlugRoute,

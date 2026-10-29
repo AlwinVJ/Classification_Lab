@@ -577,8 +577,8 @@ Detailed educational content and interactive algorithm visualizations will be in
 * [X] Add practical examples
 * [X] Add interactive visualizations
 * [X] Add Python/Scikit-learn implementations
-* [ ] Final accessibility and responsive review
-* [ ] Deploy to GitHub Pages
+* [X] Final accessibility and responsive review
+* [X] Deploy to GitHub Pages
 
 ---
 

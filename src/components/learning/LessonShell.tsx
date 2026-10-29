@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { getLesson } from "@/lib/curriculum";
 import { DocsLayout } from "@/components/layout/DocsLayout";
 
-const lessonRoutes = { classification: "/classification/$slug", evaluation: "/evaluation/$slug", algorithms: "/algorithms/$slug", compare: "/compare/$slug", advanced: "/advanced/$slug" } as const;
+const lessonRoutes = { classification: "/classification/$slug", evaluation: "/evaluation/$slug", algorithms: "/algorithms/$slug", compare: "/compare/$slug", advanced: "/advanced/$slug", multiclass: "/multiclass/$slug" } as const;
 
 export const H2 = ({ children }: { children: string }) => (
   <h2 id={children.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className="mt-10 mb-3 scroll-mt-20 text-xl font-semibold tracking-tight">{children}</h2>

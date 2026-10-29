@@ -12,6 +12,7 @@ describe("App routing", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
     expect(sections.find(s => s.id === 'compare')?.lessons.length).toBe(12);
     expect(sections.find(s => s.id === 'advanced')?.lessons.length).toBe(13);
+    expect(sections.find(s => s.id === 'multiclass')?.lessons.length).toBe(15);
     for (const section of sections) {
       expect(router.matchRoutes(`/${section.id}`).at(-1)?.routeId).not.toBe(rootRouteId);
       for (const lesson of section.lessons) expect(router.matchRoutes(`/${section.id}/${lesson.slug}`).at(-1)?.routeId).toBe(`/${section.id}/$slug`);

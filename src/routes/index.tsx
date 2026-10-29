@@ -24,6 +24,7 @@ const areas = [
   { to: "/algorithms", title: "Classification Algorithms", body: "Explore Logistic Regression, KNN, Decision Trees, and Support Vector Machines." },
   { to: "/compare", title: "Model Comparison", body: "Understand how and why different algorithms behave differently on the same dataset." },
   { to: "/advanced", title: "Advanced Classification", body: "Explore decision costs, calibration, rare classes, ensembles and model interpretation." },
+  { to: "/multiclass", title: "Multiclass & Multi-Label", body: "Extend classification to multiple exclusive classes or simultaneous labels, with interactive evaluation." },
 ] as const;
 
 function Index() {

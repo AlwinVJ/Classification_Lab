@@ -13,3 +13,6 @@
 - [x] Phase 8 thirteen advanced lessons and Python reference workflows
 - [x] Phase 8 threshold, calibration, imbalance, ensemble and interpretation experiments
 - [x] Verify Phase 8 math, scenarios, navigation, layouts and earlier phases
+- [x] Phase 9 fifteen multiclass and multi-label lessons and Python references
+- [x] Phase 9 score, softmax, classifier-count, label and evaluation calculators
+- [x] Verify Phase 9 mathematics, interactions, all routes and mobile layouts
