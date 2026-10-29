@@ -7,6 +7,11 @@ Classification Lab is a frontend-only educational website designed to explain cl
 The project is intentionally designed as a **public informational resource**, not as a learning management system.
 
 ---
+## Live Demo
+
+**Explore the website:** https://alwinvj.github.io/Classification_Lab/
+
+---
 
 ## Overview
 
